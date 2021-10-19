@@ -95,13 +95,21 @@ const type: ExecuteRule = (rule, value, source, errors, options) => {
   if (custom.indexOf(ruleType) > -1) {
     if (!types[ruleType](value)) {
       errors.push(
-        format(options.messages.types[ruleType], rule.fullField, rule.type),
+        format(
+          options.messages.types[ruleType],
+          rule.localizedField || rule.fullField,
+          rule.type,
+        ),
       );
     }
     // straight typeof check
   } else if (ruleType && typeof value !== rule.type) {
     errors.push(
-      format(options.messages.types[ruleType], rule.fullField, rule.type),
+      format(
+        options.messages.types[ruleType],
+        rule.localizedField || rule.fullField,
+        rule.type,
+      ),
     );
   }
 };

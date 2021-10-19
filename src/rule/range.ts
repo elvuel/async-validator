@@ -34,15 +34,38 @@ const range: ExecuteRule = (rule, value, source, errors, options) => {
   }
   if (len) {
     if (val !== rule.len) {
-      errors.push(format(options.messages[key].len, rule.fullField, rule.len));
+      errors.push(
+        format(
+          options.messages[key].len,
+          rule.localizedField || rule.fullField,
+          rule.len,
+        ),
+      );
     }
   } else if (min && !max && val < rule.min) {
-    errors.push(format(options.messages[key].min, rule.fullField, rule.min));
+    errors.push(
+      format(
+        options.messages[key].min,
+        rule.localizedField || rule.fullField,
+        rule.min,
+      ),
+    );
   } else if (max && !min && val > rule.max) {
-    errors.push(format(options.messages[key].max, rule.fullField, rule.max));
+    errors.push(
+      format(
+        options.messages[key].max,
+        rule.localizedField || rule.fullField,
+        rule.max,
+      ),
+    );
   } else if (min && max && (val < rule.min || val > rule.max)) {
     errors.push(
-      format(options.messages[key].range, rule.fullField, rule.min, rule.max),
+      format(
+        options.messages[key].range,
+        rule.localizedField || rule.fullField,
+        rule.min,
+        rule.max,
+      ),
     );
   }
 };

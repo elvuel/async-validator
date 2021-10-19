@@ -14,7 +14,12 @@ import { format } from '../util';
  */
 const whitespace: ExecuteRule = (rule, value, source, errors, options) => {
   if (/^\s+$/.test(value) || value === '') {
-    errors.push(format(options.messages.whitespace, rule.fullField));
+    errors.push(
+      format(
+        options.messages.whitespace,
+        rule.localizedField || rule.fullField,
+      ),
+    );
   }
 };
 

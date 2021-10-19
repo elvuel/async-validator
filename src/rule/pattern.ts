@@ -12,7 +12,7 @@ const pattern: ExecuteRule = (rule, value, source, errors, options) => {
         errors.push(
           format(
             options.messages.pattern.mismatch,
-            rule.fullField,
+            rule.localizedField || rule.fullField,
             value,
             rule.pattern,
           ),
@@ -24,7 +24,7 @@ const pattern: ExecuteRule = (rule, value, source, errors, options) => {
         errors.push(
           format(
             options.messages.pattern.mismatch,
-            rule.fullField,
+            rule.localizedField || rule.fullField,
             value,
             rule.pattern,
           ),

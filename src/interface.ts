@@ -53,6 +53,7 @@ export interface RuleItem {
   options?: ValidateOption;
   defaultField?: Rule; // 'object' or 'array' containing validation rules
   transform?: (value: Value) => Value;
+  localizedField?: string;
   message?: string | ((a?: string) => string);
   asyncValidator?: (
     rule: InternalRuleItem,
@@ -118,6 +119,7 @@ type ValidateMessage<T extends any[] = unknown[]> =
   | string
   | ((...args: T) => string);
 type FullField = string | undefined;
+type LocalizedField = string | undefined;
 type EnumString = string | undefined;
 type Pattern = string | RegExp | undefined;
 type Range = number | undefined;
@@ -125,49 +127,49 @@ type Type = string | undefined;
 
 export interface ValidateMessages {
   default?: ValidateMessage;
-  required?: ValidateMessage<[FullField]>;
-  enum?: ValidateMessage<[FullField, EnumString]>;
-  whitespace?: ValidateMessage<[FullField]>;
+  required?: ValidateMessage<[LocalizedField | FullField]>;
+  enum?: ValidateMessage<[LocalizedField | FullField, EnumString]>;
+  whitespace?: ValidateMessage<[LocalizedField | FullField]>;
   date?: {
     format?: ValidateMessage;
     parse?: ValidateMessage;
     invalid?: ValidateMessage;
   };
   types?: {
-    string?: ValidateMessage<[FullField, Type]>;
-    method?: ValidateMessage<[FullField, Type]>;
-    array?: ValidateMessage<[FullField, Type]>;
-    object?: ValidateMessage<[FullField, Type]>;
-    number?: ValidateMessage<[FullField, Type]>;
-    date?: ValidateMessage<[FullField, Type]>;
-    boolean?: ValidateMessage<[FullField, Type]>;
-    integer?: ValidateMessage<[FullField, Type]>;
-    float?: ValidateMessage<[FullField, Type]>;
-    regexp?: ValidateMessage<[FullField, Type]>;
-    email?: ValidateMessage<[FullField, Type]>;
-    url?: ValidateMessage<[FullField, Type]>;
-    hex?: ValidateMessage<[FullField, Type]>;
+    string?: ValidateMessage<[LocalizedField | FullField, Type]>;
+    method?: ValidateMessage<[LocalizedField | FullField, Type]>;
+    array?: ValidateMessage<[LocalizedField | FullField, Type]>;
+    object?: ValidateMessage<[LocalizedField | FullField, Type]>;
+    number?: ValidateMessage<[LocalizedField | FullField, Type]>;
+    date?: ValidateMessage<[LocalizedField | FullField, Type]>;
+    boolean?: ValidateMessage<[LocalizedField | FullField, Type]>;
+    integer?: ValidateMessage<[LocalizedField | FullField, Type]>;
+    float?: ValidateMessage<[LocalizedField | FullField, Type]>;
+    regexp?: ValidateMessage<[LocalizedField | FullField, Type]>;
+    email?: ValidateMessage<[LocalizedField | FullField, Type]>;
+    url?: ValidateMessage<[LocalizedField | FullField, Type]>;
+    hex?: ValidateMessage<[LocalizedField | FullField, Type]>;
   };
   string?: {
-    len?: ValidateMessage<[FullField, Range]>;
-    min?: ValidateMessage<[FullField, Range]>;
-    max?: ValidateMessage<[FullField, Range]>;
-    range?: ValidateMessage<[FullField, Range, Range]>;
+    len?: ValidateMessage<[LocalizedField | FullField, Range]>;
+    min?: ValidateMessage<[LocalizedField | FullField, Range]>;
+    max?: ValidateMessage<[LocalizedField | FullField, Range]>;
+    range?: ValidateMessage<[LocalizedField | FullField, Range, Range]>;
   };
   number?: {
-    len?: ValidateMessage<[FullField, Range]>;
-    min?: ValidateMessage<[FullField, Range]>;
-    max?: ValidateMessage<[FullField, Range]>;
-    range?: ValidateMessage<[FullField, Range, Range]>;
+    len?: ValidateMessage<[LocalizedField | FullField, Range]>;
+    min?: ValidateMessage<[LocalizedField | FullField, Range]>;
+    max?: ValidateMessage<[LocalizedField | FullField, Range]>;
+    range?: ValidateMessage<[LocalizedField | FullField, Range, Range]>;
   };
   array?: {
-    len?: ValidateMessage<[FullField, Range]>;
-    min?: ValidateMessage<[FullField, Range]>;
-    max?: ValidateMessage<[FullField, Range]>;
-    range?: ValidateMessage<[FullField, Range, Range]>;
+    len?: ValidateMessage<[LocalizedField | FullField, Range]>;
+    min?: ValidateMessage<[LocalizedField | FullField, Range]>;
+    max?: ValidateMessage<[LocalizedField | FullField, Range]>;
+    range?: ValidateMessage<[LocalizedField | FullField, Range, Range]>;
   };
   pattern?: {
-    mismatch?: ValidateMessage<[FullField, Value, Pattern]>;
+    mismatch?: ValidateMessage<[LocalizedField | FullField, Value, Pattern]>;
   };
 }
 
@@ -203,6 +205,7 @@ export interface RuleValuePackage {
 export interface InternalRuleItem extends Omit<RuleItem, 'validator'> {
   field?: string;
   fullField?: string;
+  localizedField?: string;
   fullFields?: string[];
   validator?: RuleItem['validator'] | ExecuteValidator;
 }

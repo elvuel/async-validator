@@ -169,6 +169,7 @@ class Schema {
 
         rule.field = z;
         rule.fullField = rule.fullField || z;
+        rule.localizedField = rule.localizedField || z;
         rule.type = this.getType(rule);
         series[z] = series[z] || [];
         series[z].push({
