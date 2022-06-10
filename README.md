@@ -82,11 +82,11 @@ function(source, [options], callback): Promise
 
 * `source`: The object to validate (required).
 * `options`: An object describing processing options for the validation (optional).
-* `callback`: A callback function to invoke when validation completes (required).
+* `callback`: A callback function to invoke when validation completes (optional).
 
 The method will return a Promise object like:
 * `then()`，validation passed
-* `catch({ errors, fields })`，validation failed, errors is an array of all errors, fields is an object keyed by field name with an array of
+* `catch({ errors, fields })`，validation failed, errors is an array of all errors, fields is an object keyed by field name with an array of errors per field
 
 ### Options
 
