@@ -1,5 +1,5 @@
 {
-  "name": "async-validator",
+  "name": "async-validator-mp",
   "version": "4.2.5",
   "description": "validate form asynchronous",
   "typings": "typings/index.d.ts",
@@ -8,11 +8,11 @@
     "validate",
     "async"
   ],
-  "homepage": "https://github.com/yiminghe/async-validator",
-  "author": "yiminghe@gmail.com",
+  "homepage": "https://github.com/elvuel/async-validator",
+  "author": "elvuel@gmail.com",
   "repository": {
     "type": "git",
-    "url": "git@github.com:yiminghe/async-validator.git"
+    "url": "git@github.com:elvuel/async-validator.git"
   },
   "@pika/pack": {
     "pipeline": [

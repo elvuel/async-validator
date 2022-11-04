@@ -1,5 +1,27 @@
 # async-validator
 
+It a fork, add `LocalizedField` mp(monkey-patch) for i18n senarios don't want to use `message()` meantime want to follow `InternalValidateMessages` defines. `No PRs` it just a one-time work with non-pro limited frontend background,
+you should take reference from [origin](https://github.com/yiminghe/async-validator).
+
+* install
+
+```bash
+npm i async-validator-mp
+```
+
+* with localizedField sample
+
+  ```js
+  import Schema from 'async-validator-mp';
+  const descriptor = {
+    name: {
+      type: 'string',
+      required: true,
+      localizedField: $t("schema.name")
+    },
+  }
+  ```
+
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
 [![Test coverage][coveralls-image]][coveralls-url]
