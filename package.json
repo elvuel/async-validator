@@ -1,6 +1,6 @@
 {
   "name": "async-validator-mp",
-  "version": "4.2.5",
+  "version": "4.2.6",
   "description": "validate form asynchronous",
   "typings": "typings/index.d.ts",
   "keywords": [
