@@ -1,29 +1,30 @@
 import {
-  format,
-  complementError,
-  asyncMap,
-  warning,
-  deepMerge,
-  convertFieldsError,
-} from './util';
-import validators from './validator/index';
-import { messages as defaultMessages, newMessages } from './messages';
-import {
   InternalRuleItem,
   InternalValidateMessages,
   Rule,
   RuleItem,
-  Rules,
-  ValidateCallback,
-  ValidateMessages,
-  ValidateOption,
-  Values,
   RuleValuePackage,
+  Rules,
+  SyncErrorType,
+  ValidateCallback,
   ValidateError,
   ValidateFieldsError,
-  SyncErrorType,
+  ValidateMessages,
+  ValidateOption,
   ValidateResult,
+  Values,
 } from './interface';
+import {
+  asyncMap,
+  complementError,
+  convertFieldsError,
+  deepMerge,
+  format,
+  warning,
+} from './util';
+import { messages as defaultMessages, newMessages } from './messages';
+
+import validators from './validator/index';
 
 export * from './interface';
 
@@ -301,8 +302,13 @@ class Schema {
           } else if (res === false) {
             cb(
               typeof rule.message === 'function'
-                ? rule.message(rule.fullField || rule.field)
-                : rule.message || `${rule.fullField || rule.field} fails`,
+                ? rule.message(
+                    rule.localizedField || rule.fullField || rule.field,
+                  )
+                : rule.message ||
+                    `${rule.localizedField ||
+                      rule.fullField ||
+                      rule.field} fails`,
             );
           } else if (res instanceof Array) {
             cb(res);
